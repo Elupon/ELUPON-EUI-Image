@@ -1,34 +1,10 @@
-# ELUPON Universal Digital Ecosystem (EUA & EUI Specifications)
+# ELUPON Universal Image (EUI Specification)
 
-Welcome to the official technical repository for the **ELUPON** open-source digital multimedia ecosystem. Designed from scratch for high-performance mobile architectures, zero processor overhead, and direct native hardware buffer execution.
-
----
-
-## 🎵 1. ELUPON Universal Audio (EUA Format)
-
-The **EUA** standard provides a fixed 2x data optimization for high-resolution 48kHz Stereo streams by utilizing custom linear bit-depth reduction. By mapping raw audio waves directly to hardware sample buffers, it bypasses heavy mathematical transformations, eliminating processor degradation and bit-shifting synchronization failures.
-
-### Technical Metadata & IANA Info
-- **MIME Media Type:** `audio/prs.elupon-eua` (Under active IANA review, Ticket #1460548)
-- **File Extension:** `.eua`
-- **Magic Number (Signature):** `EUAL7` (`45 55 41 4C 37` in Hex)
-- **Native Implementation:** Android OS via custom `android.media.AudioTrack` streaming
-
-### Binary Structure Specification
-Every `.eua` file contains a minimal 14-byte unpadded structural header immediately followed by raw 8-bit interleaved dual-channel PCM frames.
-
-#### File Header Layout
-
-| Offset (Bytes) | Size | Data Type | Field Description |
-|----------------|------|-----------|-------------------|
-| 0 - 4          | 5    | `char[]`  | Magic Signature: Must be string `"EUAL7"` |
-| 5 - 6          | 2    | `uint16`  | Audio Channels count (e.g., `2` for Stereo) |
-| 7 - 10         | 4    | `uint32`  | Sample Rate in Hz (e.g., `48000`) |
-| 11 - 13        | 3    | `uint24`  | Total Audio Samples count |
+Welcome to the official technical repository for the **ELUPON Universal Image (EUI)** open-source graphics format. Designed from scratch for high-performance mobile architectures, zero processor overhead, and direct native hardware buffer execution.
 
 ---
 
-## 🖼️ 2. ELUPON Universal Image (EUI Format - ELUPON UBRG v3)
+## 🖼️ ELUPON Universal Image (EUI Format - ELUPON UBRG v3)
 
 The **EUI** standard (Version 3) incorporates the proprietary **ELUPON UBRG v3** (Universal Binary RGB) graphics architecture. It completely discards container inflation, color profiles, EXIF metadata, and compression artifacts. By storing pixel data in a raw 24-bit per pixel sequential `RGB888` block (8-bit Red, 8-bit Green, 8-bit Blue), it delivers mathematically perfect image fidelity, instantly inflating into mobile graphics memory (`android.graphics.Bitmap`) without CPU decoding strain.
 
